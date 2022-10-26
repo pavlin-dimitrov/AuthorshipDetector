@@ -9,8 +9,11 @@ import com.company.view.InputFilePath;
 
 public class TextDb {
 
-  private final InputFilePath filePath = new InputFilePath();
-  private final String path = filePath.fileName();
+  private final InputFilePath inputFilePath = new InputFilePath();
+  private final String path = inputFilePath.fileName();
+
+  public TextDb() {
+  }
 
   public ArrayList<TextModel> insertedText() {
     try (Scanner input = new Scanner(new File(path))) {
