@@ -1,4 +1,4 @@
-package com.company.signatureFeature;
+package com.company.signature_feature;
 
 import java.text.BreakIterator;
 import java.util.Arrays;
@@ -8,9 +8,9 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class FeatureCalculator {
+public class BASE_Feature {
 
-  public FeatureCalculator() {
+  public BASE_Feature() {
   }
 
   public double setAverageSentenceComplexity(String text) {
@@ -31,19 +31,17 @@ public class FeatureCalculator {
   }
 
   public double setAverageWordLength(String text) {
-    int allWordsInText = 0;
-    double sumOfAllWordsLength = 0;
+    return getAllWordsLength(text) / getNumberOfAllWords(text);
+  }
+
+  private double getAllWordsLength(String text){
+    double sumOfAllWordsLength = 0d;
     String[] words = cleanAllPunctuation(text).split(" ");
-    for (String word : words) {
+    for (String word : words){
       double wordLength = word.length();
       sumOfAllWordsLength += wordLength;
-      allWordsInText++;
     }
-    double averageWordLength = 0;
-    if (allWordsInText > 0) {
-      averageWordLength = sumOfAllWordsLength / allWordsInText;
-    }
-    return averageWordLength;
+    return sumOfAllWordsLength;
   }
 
   private String cleanAllPunctuation(String text) {

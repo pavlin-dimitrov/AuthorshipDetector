@@ -7,15 +7,15 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 import com.company.view.InputFilePath;
 
-public class TextDb {
+public class TextCollection {
 
   private final InputFilePath inputFilePath = new InputFilePath();
   private final String path = inputFilePath.fileName();
 
-  public TextDb() {
+  public TextCollection() {
   }
 
-  public ArrayList<TextModel> insertedText() {
+  public ArrayList<TextModel> insertText() {
     try (Scanner input = new Scanner(new File(path))) {
       input.useDelimiter(Pattern.compile("^\\s*$", Pattern.MULTILINE));
       ArrayList<TextModel> textModels = new ArrayList<>();

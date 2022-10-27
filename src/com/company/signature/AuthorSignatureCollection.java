@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class AuthorSignatureDb {
+public class AuthorSignatureCollection {
 
   public ArrayList<Signature> signatures() {
     try (Scanner input = new Scanner(new File("src/resources/knownSignatures.txt"))) {
