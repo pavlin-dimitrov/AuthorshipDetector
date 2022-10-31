@@ -10,7 +10,7 @@ private FeatureDto featureDto;
 
   @Override
   public double featureCalculation(String text) {
-    return featureDto.getNumberOfPhrasesInText(text)
+    return (double) featureDto.getNumberOfPhrasesInText(text)
         / featureDto.getNumberOfSentencesInText(text);
   }
 }

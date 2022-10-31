@@ -7,23 +7,25 @@ import java.util.Scanner;
 
 public class AuthorSignatureCollection {
 
-  public ArrayList<Signature> signatures() {
-    try (Scanner input = new Scanner(new File("src/resources/knownSignatures.txt"))) {
-      input.useDelimiter(",|\n");
-      ArrayList<Signature> authorSignatures = new ArrayList<>();
+  public ArrayList<SignatureModel> signatures() {
+    try (Scanner input = new Scanner(new File("src/com/company/resources/knownSignatures.txt"))) {
+      input.useDelimiter("[,]|[\n]");
+      ArrayList<SignatureModel> authorSignatureModels = new ArrayList<>();
       while (input.hasNextLine()) {
         String name = input.next();
-        double averageWordLength = input.nextDouble();
-        double typeTokenRatio = input.nextDouble();
-        double hapaxLegomenaRatio = input.nextDouble();
-        double averageSentenceRatio = input.nextDouble();
-        double averageSentenceComplexity = input.nextDouble();
+        String averageWordLength = input.next();
+        String typeTokenRatio = input.next();
+        String hapaxLegomenaRatio = input.next();
+        String averageSentenceRatio = input.next();
+        String averageSentenceComplexity = input.next();
 
-        Signature signature = new Signature(name, averageWordLength, typeTokenRatio,
-            hapaxLegomenaRatio, averageSentenceRatio, averageSentenceComplexity);
-        authorSignatures.add(signature);
+        SignatureModel signatureModel = new SignatureModel(name,
+            Double.parseDouble(averageWordLength), Double.parseDouble(typeTokenRatio),
+            Double.parseDouble(hapaxLegomenaRatio), Double.parseDouble(averageSentenceRatio),
+            Double.parseDouble(averageSentenceComplexity));
+        authorSignatureModels.add(signatureModel);
       }
-      return authorSignatures;
+      return authorSignatureModels;
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     }

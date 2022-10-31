@@ -10,11 +10,11 @@ import java.util.regex.Pattern;
 
 public class FeatureDto {
 
-  protected double getAllWordsLength(String text){
-  double sumOfAllWordsLength = 0d;
+  protected int getAllWordsLength(String text){
+  int sumOfAllWordsLength = 0;
   String[] words = cleanAllPunctuation(text).split(" ");
     for (String word : words){
-    double wordLength = word.length();
+    int wordLength = word.length();
     sumOfAllWordsLength += wordLength;
   }
     return sumOfAllWordsLength;
@@ -28,12 +28,12 @@ public class FeatureDto {
         .replaceAll("\s", " ");
   }
 
-  protected double getNumberOfAllWords(String text) {
+  protected int getNumberOfAllWords(String text) {
     String[] words = cleanAllPunctuation(text).trim().split(" ");
     return words.length;
   }
 
-  protected double getNumberOfUniqueWords(String text) {
+  protected int getNumberOfUniqueWords(String text) {
     String[] words = cleanAllPunctuation(text).split(" ");
     HashSet<String> uniqueWords = new HashSet<String>(Arrays.asList(words));
     return uniqueWords.size();
@@ -69,10 +69,10 @@ public class FeatureDto {
     return count - 1;
   }
 
-  protected double getNumberOfPhrasesInText(String text) {
+  protected int getNumberOfPhrasesInText(String text) {
     String[] textToSentences = separateTextToSentences(text);
-    double countPhraseSeparators = 0;
-    double countPhrases = 0;
+    int countPhraseSeparators = 0;
+    int countPhrases = 0;
     for (String sentence : textToSentences) {
       Matcher matcher = phraseSeparatorPattern(sentence);
       while (matcher.find()) {

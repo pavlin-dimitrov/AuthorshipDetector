@@ -10,6 +10,6 @@ public class AverageSentenceRatio implements FeatureCalculator {
 
   @Override
   public double featureCalculation(String text) {
-    return featureDto.getNumberOfAllWords(text) / featureDto.getNumberOfSentencesInText(text);
+    return (double)featureDto.getNumberOfAllWords(text) / featureDto.getNumberOfSentencesInText(text);
   }
 }

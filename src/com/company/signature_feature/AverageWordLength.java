@@ -10,6 +10,6 @@ public class AverageWordLength implements FeatureCalculator{
 
   @Override
   public double featureCalculation(String text) {
-    return featureDto.getAllWordsLength(text) / featureDto.getNumberOfAllWords(text);
+    return (double) featureDto.getAllWordsLength(text) / featureDto.getNumberOfAllWords(text);
   }
 }

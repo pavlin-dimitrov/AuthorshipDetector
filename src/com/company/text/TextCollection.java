@@ -9,13 +9,10 @@ import com.company.view.InputFilePath;
 
 public class TextCollection {
 
-  private final InputFilePath inputFilePath = new InputFilePath();
-  private final String path = inputFilePath.fileName();
-
   public TextCollection() {
   }
 
-  public ArrayList<TextModel> insertText() {
+  public ArrayList<TextModel> insertText(String path) {
     try (Scanner input = new Scanner(new File(path))) {
       input.useDelimiter(Pattern.compile("^\\s*$", Pattern.MULTILINE));
       ArrayList<TextModel> textModels = new ArrayList<>();

@@ -10,6 +10,6 @@ public class HapaxLegomenaRatio implements FeatureCalculator{
 
   @Override
   public double featureCalculation(String text) {
-    return featureDto.getNumberOfNonRecurringWords(text) / featureDto.getNumberOfAllWords(text);
+    return (double) featureDto.getNumberOfNonRecurringWords(text) / featureDto.getNumberOfAllWords(text);
   }
 }

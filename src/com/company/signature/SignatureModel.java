@@ -1,6 +1,6 @@
 package com.company.signature;
 
-public class Signature {
+public class SignatureModel {
   private final String name;
   private final double averageWordLength;
   private final double typeTokenRatio;
@@ -8,7 +8,7 @@ public class Signature {
   private final double averageSentenceRatio;
   private final double averageSentenceComplexity;
 
-  public Signature(String name, double averageWordLength, double typeTokenRatio,
+  public SignatureModel(String name, double averageWordLength, double typeTokenRatio,
       double hapaxLegomenaRatio, double averageSentenceRatio, double averageSentenceComplexity) {
     this.name = name;
     this.averageWordLength = averageWordLength;

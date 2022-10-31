@@ -10,6 +10,6 @@ public class TypeTokenRatio implements FeatureCalculator{
 
   @Override
   public double featureCalculation(String text) {
-    return featureDto.getNumberOfUniqueWords(text) / featureDto.getNumberOfAllWords(text);
+    return (double) featureDto.getNumberOfUniqueWords(text) / featureDto.getNumberOfAllWords(text);
   }
 }

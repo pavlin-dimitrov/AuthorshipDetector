@@ -29,18 +29,18 @@ public class TextSignatureCollection {
     this.averageSentenceComplexity = new AverageSentenceComplexity(featureDto);
   }
 
-  public ArrayList<Signature> textSignatures(TextCollection textCollection) {
-    ArrayList<TextModel> texts = textCollection.insertText();
-    ArrayList<Signature> textSignatures = new ArrayList<>(texts.size());
+  public ArrayList<SignatureModel> textSignatures(TextCollection textCollection, String path) {
+    ArrayList<TextModel> texts = textCollection.insertText(path);
+    ArrayList<SignatureModel> textSignatureModels = new ArrayList<>(texts.size());
     for (TextModel text : texts) {
-      Signature signature = new Signature(text.getTextTitle(),
+      SignatureModel signatureModel = new SignatureModel(text.getTextTitle(),
           averageWordLength.featureCalculation(text.getTextBody()),
           typeTokenRatio.featureCalculation(text.getTextBody()),
           hapaxLegomenaRatioOfText.featureCalculation(text.getTextBody()),
           averageSentenceRatio.featureCalculation(text.getTextBody()),
           averageSentenceComplexity.featureCalculation(text.getTextBody()));
-      textSignatures.add(signature);
+      textSignatureModels.add(signatureModel);
     }
-    return textSignatures;
+    return textSignatureModels;
   }
 }
