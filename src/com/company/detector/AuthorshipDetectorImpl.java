@@ -4,11 +4,10 @@ import com.company.signature.AuthorSignatureCollection;
 import com.company.signature.SignatureModel;
 import com.company.signature.TextSignatureCollection;
 import com.company.text.TextCollection;
-import com.company.text.TextModel;
 import com.company.utils.FeatureType;
 import java.util.ArrayList;
 
-public class AuthorshipDetectorImpl implements AuthorshipDetector{
+public class AuthorshipDetectorImpl implements AuthorshipDetector {
 
   private final AuthorSignatureCollection authorSignatureCollection = new AuthorSignatureCollection();
   private final TextSignatureCollection textSignatureCollection = new TextSignatureCollection();
@@ -18,23 +17,14 @@ public class AuthorshipDetectorImpl implements AuthorshipDetector{
   }
 
   @Override
-  public String[][] findAuthor(String path) {
+  public String[][] findComparisonCoefficient(String path) {
     ArrayList<SignatureModel> authorSignature = authorSignatureCollection.signatures();
-    ArrayList<SignatureModel> textSignature = textSignatureCollection.textSignatures(textCollection, path);
-
-    String[][] resultArray = new String[authorSignature.size() + 1][textSignature.size() + 1];
-
-    for (int i = 0; i < authorSignature.size() + 1; i++) {
-      for (int j = 0; j < textSignature.size() + 1; j++) {
-        if (i == 0 && j == 0) {
-          resultArray[i][j] = "        *         ";
-        } else if (i == 0) {
-          resultArray[i][j] = textSignature.get(j - 1).getName();
-        } else if (j == 0) {
-          resultArray[i][j] = authorSignature.get(i - 1).getName();
-        } else {
-          resultArray[i][j] = comparator(authorSignature.get(i - 1), textSignature.get(j - 1));
-        }
+    ArrayList<SignatureModel> textSignature = textSignatureCollection.textSignatures(textCollection,
+        path);
+    String[][] resultArray = new String[authorSignature.size()][textSignature.size()];
+    for (int i = 0; i < authorSignature.size(); i++) {
+      for (int j = 0; j < textSignature.size(); j++) {
+        resultArray[i][j] = comparator(authorSignature.get(i), textSignature.get(j));
       }
     }
     return resultArray;

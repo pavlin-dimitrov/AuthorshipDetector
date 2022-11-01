@@ -10,13 +10,16 @@ public class DetectorController {
   private final TextCollection textCollection = new TextCollection();
   private final AuthorshipDetector authorshipDetector = new AuthorshipDetectorImpl();
   private final ResultPrinter resultPrinter = new ResultPrinter();
+  private final DetectorResultParser resultParser = new DetectorResultParser();
 
   public DetectorController() {
   }
 
-  public void run(){
+  public void run() {
     String filePath = inputFilePath.fileName();
     textCollection.insertText(filePath);
-    resultPrinter.printResult(authorshipDetector.findAuthor(filePath));
+//    resultPrinter.printResult(authorshipDetector.findComparisonCoefficient(filePath));
+    resultPrinter.printResult(resultParser.parseCoefficientToPercentage(
+        authorshipDetector.findComparisonCoefficient(filePath)));
   }
 }
