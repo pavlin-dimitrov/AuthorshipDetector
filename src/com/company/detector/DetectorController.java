@@ -18,8 +18,7 @@ public class DetectorController {
   public void run() {
     String filePath = inputFilePath.fileName();
     textCollection.insertText(filePath);
-//    resultPrinter.printResult(authorshipDetector.findComparisonCoefficient(filePath));
     resultPrinter.printResult(resultParser.parseCoefficientToPercentage(
-        authorshipDetector.findComparisonCoefficient(filePath)));
+        authorshipDetector.storeComparisonCoefficient(filePath)));
   }
 }

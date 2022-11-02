@@ -2,14 +2,14 @@ package com.company.signature_feature;
 
 public class TypeTokenRatio implements FeatureCalculator{
 
-  private FeatureDto featureDto;
+  private StringStatistic stringStatistic;
 
-  public TypeTokenRatio(FeatureDto featureDto) {
-    this.featureDto = featureDto;
+  public TypeTokenRatio(StringStatistic stringStatistic) {
+    this.stringStatistic = stringStatistic;
   }
 
   @Override
   public double featureCalculation(String text) {
-    return (double) featureDto.getNumberOfUniqueWords(text) / featureDto.getNumberOfAllWords(text);
+    return (double) stringStatistic.getNumberOfUniqueWords(text) / stringStatistic.getNumberOfAllWords(text);
   }
 }

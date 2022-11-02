@@ -4,7 +4,7 @@ import com.company.signature_feature.AverageSentenceComplexity;
 import com.company.signature_feature.AverageSentenceRatio;
 import com.company.signature_feature.AverageWordLength;
 import com.company.signature_feature.FeatureCalculator;
-import com.company.signature_feature.FeatureDto;
+import com.company.signature_feature.StringStatistic;
 import com.company.signature_feature.HapaxLegomenaRatio;
 import com.company.signature_feature.TypeTokenRatio;
 import com.company.text.TextCollection;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class TextSignatureCollection {
 
-  private final FeatureDto featureDto;
+  private final StringStatistic stringStatistic;
   private final FeatureCalculator averageWordLength;
   private final FeatureCalculator typeTokenRatio;
   private final FeatureCalculator hapaxLegomenaRatioOfText;
@@ -21,12 +21,12 @@ public class TextSignatureCollection {
   private final FeatureCalculator averageSentenceComplexity;
 
   public TextSignatureCollection() {
-    this.featureDto = new FeatureDto();
-    this.averageWordLength = new AverageWordLength(featureDto);
-    this.typeTokenRatio = new TypeTokenRatio(featureDto);
-    this.hapaxLegomenaRatioOfText = new HapaxLegomenaRatio(featureDto);
-    this.averageSentenceRatio = new AverageSentenceRatio(featureDto);
-    this.averageSentenceComplexity = new AverageSentenceComplexity(featureDto);
+    this.stringStatistic = new StringStatistic();
+    this.averageWordLength = new AverageWordLength(stringStatistic);
+    this.typeTokenRatio = new TypeTokenRatio(stringStatistic);
+    this.hapaxLegomenaRatioOfText = new HapaxLegomenaRatio(stringStatistic);
+    this.averageSentenceRatio = new AverageSentenceRatio(stringStatistic);
+    this.averageSentenceComplexity = new AverageSentenceComplexity(stringStatistic);
   }
 
   public ArrayList<SignatureModel> textSignatures(TextCollection textCollection, String path) {

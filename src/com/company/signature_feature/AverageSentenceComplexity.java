@@ -1,16 +1,16 @@
 package com.company.signature_feature;
 
-public class AverageSentenceComplexity implements FeatureCalculator{
+public class AverageSentenceComplexity implements FeatureCalculator {
 
-private FeatureDto featureDto;
+  private final StringStatistic stringStatistic;
 
-  public AverageSentenceComplexity(FeatureDto featureDto) {
-    this.featureDto = featureDto;
+  public AverageSentenceComplexity(StringStatistic stringStatistic) {
+    this.stringStatistic = stringStatistic;
   }
 
   @Override
   public double featureCalculation(String text) {
-    return (double) featureDto.getNumberOfPhrasesInText(text)
-        / featureDto.getNumberOfSentencesInText(text);
+    return (double) stringStatistic.getNumberOfPhrasesInText(text)
+        / stringStatistic.getNumberOfSentencesInText(text);
   }
 }

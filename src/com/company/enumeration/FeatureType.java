@@ -1,4 +1,4 @@
-package com.company.utils;
+package com.company.enumeration;
 
 public enum FeatureType {
   AVERAGE_WORD_LENGTH (11),

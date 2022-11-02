@@ -2,5 +2,5 @@ package com.company.detector;
 
 public interface AuthorshipDetector {
 
-  String[][] findComparisonCoefficient(String path);
+  String[][] storeComparisonCoefficient(String path);
 }

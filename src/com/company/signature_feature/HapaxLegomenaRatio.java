@@ -2,14 +2,14 @@ package com.company.signature_feature;
 
 public class HapaxLegomenaRatio implements FeatureCalculator{
 
-  private FeatureDto featureDto;
+  private StringStatistic stringStatistic;
 
-  public HapaxLegomenaRatio(FeatureDto featureDto) {
-    this.featureDto = featureDto;
+  public HapaxLegomenaRatio(StringStatistic stringStatistic) {
+    this.stringStatistic = stringStatistic;
   }
 
   @Override
   public double featureCalculation(String text) {
-    return (double) featureDto.getNumberOfNonRecurringWords(text) / featureDto.getNumberOfAllWords(text);
+    return (double) stringStatistic.getNumberOfNonRecurringWords(text) / stringStatistic.getNumberOfAllWords(text);
   }
 }

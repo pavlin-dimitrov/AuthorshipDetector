@@ -2,14 +2,14 @@ package com.company.signature_feature;
 
 public class AverageWordLength implements FeatureCalculator{
 
-  private FeatureDto featureDto;
+  private StringStatistic stringStatistic;
 
-  public AverageWordLength(FeatureDto featureDto) {
-    this.featureDto = featureDto;
+  public AverageWordLength(StringStatistic stringStatistic) {
+    this.stringStatistic = stringStatistic;
   }
 
   @Override
   public double featureCalculation(String text) {
-    return (double) featureDto.getAllWordsLength(text) / featureDto.getNumberOfAllWords(text);
+    return (double) stringStatistic.getAllWordsLength(text) / stringStatistic.getNumberOfAllWords(text);
   }
 }

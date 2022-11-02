@@ -2,14 +2,14 @@ package com.company.signature_feature;
 
 public class AverageSentenceRatio implements FeatureCalculator {
 
-  private FeatureDto featureDto;
+  private StringStatistic stringStatistic;
 
-  public AverageSentenceRatio(FeatureDto featureDto) {
-    this.featureDto = featureDto;
+  public AverageSentenceRatio(StringStatistic stringStatistic) {
+    this.stringStatistic = stringStatistic;
   }
 
   @Override
   public double featureCalculation(String text) {
-    return (double)featureDto.getNumberOfAllWords(text) / featureDto.getNumberOfSentencesInText(text);
+    return (double) stringStatistic.getNumberOfAllWords(text) / stringStatistic.getNumberOfSentencesInText(text);
   }
 }
