@@ -14,15 +14,16 @@ public class DetectorResultParser {
   public DetectorResultParser() {
   }
 
-  public String[][] parseCoefficientToPercentage(String[][] comparedOnCoefficient) {
-    String[][] parsedResult = new String[comparedOnCoefficient[0].length][comparedOnCoefficient.length];
-    Double[][] arr = convertStringToDoubleArray(comparedOnCoefficient);
+  public String[][] parseCoefficientToPercentage(String[][] comparedSignatureCoefficient) {
+    String[][] parsedResult = new String[comparedSignatureCoefficient[0].length][comparedSignatureCoefficient.length];
+    Double[][] comparedCoefficientToDouble = convertStringToDoubleArray(
+        comparedSignatureCoefficient);
 
-    for (int column = 0; column < arr[0].length; column++) {
-      double maxInColumn = findMaxCoefficientForText(column, arr);
+    for (int column = 0; column < comparedCoefficientToDouble[0].length; column++) {
+      double maxInColumn = findMaxCoefficientForText(column, comparedCoefficientToDouble);
 
-      for (int row = 0; row < arr.length; row++) {
-        double percentage = arr[row][column] / (maxInColumn / 100);
+      for (int row = 0; row < comparedCoefficientToDouble.length; row++) {
+        double percentage = comparedCoefficientToDouble[row][column] / (maxInColumn / 100);
         double reversePercentage = (percentage - 100) * (-1);
         parsedResult[column][row] = Double.toString(round(reversePercentage));
       }
@@ -45,7 +46,7 @@ public class DetectorResultParser {
 
   public Double[][] convertStringToDoubleArray(String[][] comparedOnCoefficient) {
     return Arrays.stream(comparedOnCoefficient).map(a -> Arrays.stream(a).map(
-            Double::valueOf).toArray(Double[]::new)).toArray(Double[][]::new);
+        Double::valueOf).toArray(Double[]::new)).toArray(Double[][]::new);
   }
 
   private int findMaxAuthorName(AuthorSignatureCollection authorSignatureCollection) {

@@ -13,6 +13,9 @@ public class StringStatistic {
 
   int initialCount = 0;
 
+  public StringStatistic() {
+  }
+
   protected int getAllWordsLength(String text) {
     String[] words = cleanAllPunctuation(text).split(RegexPattern.SINGLE_WHITESPACE.getRegex());
     return Arrays.stream(words).mapToInt(String::length).sum();
