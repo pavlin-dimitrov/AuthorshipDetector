@@ -10,12 +10,24 @@ import java.util.ArrayList;
 
 public class AuthorshipDetectorImpl implements AuthorshipDetector {
 
-  private final AuthorSignatureCollection authorSignatureCollection = new AuthorSignatureCollection();
-  private final TextSignatureCollection textSignatureCollection = new TextSignatureCollection();
-  private final TextCollection textCollection = new TextCollection();
-  private final SignatureComparator signatureComparator = new SignatureComparator();
+  private static AuthorshipDetectorImpl instance;
+  private final AuthorSignatureCollection authorSignatureCollection;
+  private final TextSignatureCollection textSignatureCollection;
+  private final TextCollection textCollection;
+  private final SignatureComparator signatureComparator;
 
-  public AuthorshipDetectorImpl() {
+  private AuthorshipDetectorImpl() {
+    authorSignatureCollection = AuthorSignatureCollection.getInstance();
+    textSignatureCollection = TextSignatureCollection.getInstance();
+    textCollection = TextCollection.getInstance();
+    signatureComparator = SignatureComparator.getInstance();
+  }
+
+  public static AuthorshipDetectorImpl getInstance(){
+    if (instance == null){
+      instance = new AuthorshipDetectorImpl();
+    }
+    return instance;
   }
 
   @Override

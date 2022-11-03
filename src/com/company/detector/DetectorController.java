@@ -1,18 +1,32 @@
 package com.company.detector;
 
+import com.company.signature.AuthorSignatureCollection;
 import com.company.text.TextCollection;
 import com.company.view.InputFilePath;
 import com.company.view.ResultPrinter;
 
 public class DetectorController {
 
-  private final InputFilePath inputFilePath = new InputFilePath();
-  private final TextCollection textCollection = new TextCollection();
-  private final AuthorshipDetector authorshipDetector = new AuthorshipDetectorImpl();
-  private final ResultPrinter resultPrinter = new ResultPrinter();
-  private final DetectorResultParser resultParser = new DetectorResultParser();
+  private static DetectorController instance;
+  private final InputFilePath inputFilePath;
+  private final TextCollection textCollection;
+  private final AuthorshipDetector authorshipDetector;
+  private final ResultPrinter resultPrinter;
+  private final DetectorResultParser resultParser;
 
-  public DetectorController() {
+  private DetectorController() {
+    inputFilePath = InputFilePath.getInstance();
+    textCollection = TextCollection.getInstance();
+    authorshipDetector = AuthorshipDetectorImpl.getInstance();
+    resultPrinter = ResultPrinter.getInstance();
+    resultParser = DetectorResultParser.getInstance();
+  }
+
+  public static DetectorController getInstance(){
+    if (instance == null){
+      instance = new DetectorController();
+    }
+    return instance;
   }
 
   public void run() {

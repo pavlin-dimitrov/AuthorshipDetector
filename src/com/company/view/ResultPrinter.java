@@ -1,9 +1,24 @@
 package com.company.view;
 
+import java.util.List;
+
 public class ResultPrinter {
 
-  public void printResult(String[][] compared) {
+  private static ResultPrinter instance;
+
+  private ResultPrinter() {
+  }
+
+  public static ResultPrinter getInstance(){
+    if (instance == null){
+      instance = new ResultPrinter();
+    }
+    return instance;
+  }
+
+  public void printResult(String[][] compared, List authorName, List textName) {
     for (String[] strings : compared) {
+
       for (int j = 0; j < compared[0].length; j++) {
         System.out.print(strings[j] + " // ");
       }

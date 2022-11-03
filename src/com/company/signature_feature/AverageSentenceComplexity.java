@@ -2,10 +2,18 @@ package com.company.signature_feature;
 
 public class AverageSentenceComplexity implements FeatureCalculator {
 
+  private static AverageSentenceComplexity instance;
   private final StringStatistic stringStatistic;
 
-  public AverageSentenceComplexity(StringStatistic stringStatistic) {
-    this.stringStatistic = stringStatistic;
+  private AverageSentenceComplexity() {
+    stringStatistic = StringStatistic.getInstance();
+  }
+
+  public static AverageSentenceComplexity getInstance(){
+    if (instance == null) {
+      instance = new AverageSentenceComplexity();
+    }
+    return instance;
   }
 
   @Override

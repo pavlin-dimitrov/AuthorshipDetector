@@ -2,10 +2,18 @@ package com.company.signature_feature;
 
 public class AverageSentenceRatio implements FeatureCalculator {
 
-  private StringStatistic stringStatistic;
+  private static AverageSentenceRatio instance;
+  private final StringStatistic stringStatistic;
 
-  public AverageSentenceRatio(StringStatistic stringStatistic) {
-    this.stringStatistic = stringStatistic;
+  private AverageSentenceRatio() {
+    stringStatistic = StringStatistic.getInstance();
+  }
+
+  public static AverageSentenceRatio getInstance() {
+    if (instance == null) {
+      instance = new AverageSentenceRatio();
+    }
+    return instance;
   }
 
   @Override

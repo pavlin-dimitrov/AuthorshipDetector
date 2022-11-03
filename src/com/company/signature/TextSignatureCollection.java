@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class TextSignatureCollection {
 
+  private static TextSignatureCollection instance;
   private final StringStatistic stringStatistic;
   private final FeatureCalculator averageWordLength;
   private final FeatureCalculator typeTokenRatio;
@@ -20,13 +21,20 @@ public class TextSignatureCollection {
   private final FeatureCalculator averageSentenceRatio;
   private final FeatureCalculator averageSentenceComplexity;
 
-  public TextSignatureCollection() {
-    this.stringStatistic = new StringStatistic();
-    this.averageWordLength = new AverageWordLength(stringStatistic);
-    this.typeTokenRatio = new TypeTokenRatio(stringStatistic);
-    this.hapaxLegomenaRatioOfText = new HapaxLegomenaRatio(stringStatistic);
-    this.averageSentenceRatio = new AverageSentenceRatio(stringStatistic);
-    this.averageSentenceComplexity = new AverageSentenceComplexity(stringStatistic);
+  private TextSignatureCollection() {
+    stringStatistic = StringStatistic.getInstance();
+    averageWordLength = AverageWordLength.getInstance();
+    typeTokenRatio = TypeTokenRatio.getInstance();
+    hapaxLegomenaRatioOfText = HapaxLegomenaRatio.getInstance();
+    averageSentenceRatio = AverageSentenceRatio.getInstance();
+    averageSentenceComplexity = AverageSentenceComplexity.getInstance();
+  }
+
+  public static TextSignatureCollection getInstance(){
+    if (instance == null){
+      instance = new TextSignatureCollection();
+    }
+    return instance;
   }
 
   public ArrayList<SignatureModel> textSignatures(TextCollection textCollection, String path) {

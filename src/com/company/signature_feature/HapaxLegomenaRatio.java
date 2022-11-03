@@ -2,10 +2,18 @@ package com.company.signature_feature;
 
 public class HapaxLegomenaRatio implements FeatureCalculator{
 
-  private StringStatistic stringStatistic;
+  private static HapaxLegomenaRatio instance;
+  private final StringStatistic stringStatistic;
 
-  public HapaxLegomenaRatio(StringStatistic stringStatistic) {
-    this.stringStatistic = stringStatistic;
+  private HapaxLegomenaRatio() {
+    stringStatistic = StringStatistic.getInstance();
+  }
+
+  public static HapaxLegomenaRatio getInstance(){
+    if (instance == null) {
+      instance = new HapaxLegomenaRatio();
+    }
+    return instance;
   }
 
   @Override

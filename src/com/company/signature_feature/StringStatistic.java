@@ -11,11 +11,18 @@ import java.util.regex.Pattern;
 
 public class StringStatistic {
 
-  int initialCount = 0;
+  private static StringStatistic instance;
+  private final int initialCount = 0;
 
-  public StringStatistic() {
+  private StringStatistic() {
   }
 
+  public static StringStatistic getInstance(){
+    if (instance == null){
+      instance = new StringStatistic();
+    }
+    return instance;
+  }
   protected int getAllWordsLength(String text) {
     String[] words = cleanAllPunctuation(text).split(RegexPattern.SINGLE_WHITESPACE.getRegex());
     return Arrays.stream(words).mapToInt(String::length).sum();
@@ -61,13 +68,12 @@ public class StringStatistic {
   }
 
   private int countSentences(BreakIterator bi, String source) {
-    String newString = source.replaceAll(RegexPattern.BREAK_ITERATOR_REGEX.getRegex(),
-        RegexPattern.EMPTY_STRING.getRegex());
+    String newString = source.replaceAll(RegexPattern.BREAK_ITERATOR_REGEX.getRegex(), RegexPattern.EMPTY_STRING.getRegex());
     int count = initialCount;
     bi.setText(newString);
-    int boundary = bi.first();
+    int boundary = bi.next();
     while (boundary != BreakIterator.DONE) {
-      ++count;
+      count++;
       boundary = bi.next();
     }
     return count;

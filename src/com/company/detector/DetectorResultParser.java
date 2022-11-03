@@ -11,7 +11,16 @@ import java.util.stream.Collectors;
 
 public class DetectorResultParser {
 
-  public DetectorResultParser() {
+  private static DetectorResultParser instance;
+
+  private DetectorResultParser() {
+  }
+
+  public static DetectorResultParser getInstance() {
+    if (instance == null){
+      instance = new DetectorResultParser();
+    }
+    return instance;
   }
 
   public String[][] parseCoefficientToPercentage(String[][] comparedSignatureCoefficient) {
@@ -25,7 +34,7 @@ public class DetectorResultParser {
       for (int row = 0; row < comparedCoefficientToDouble.length; row++) {
         double percentage = comparedCoefficientToDouble[row][column] / (maxInColumn / 100);
         double reversePercentage = (percentage - 100) * (-1);
-        parsedResult[column][row] = Double.toString(round(reversePercentage));
+        parsedResult[column][row] = Double.toString(round(reversePercentage)) + "%";
       }
     }
     return parsedResult;
@@ -47,10 +56,5 @@ public class DetectorResultParser {
   public Double[][] convertStringToDoubleArray(String[][] comparedOnCoefficient) {
     return Arrays.stream(comparedOnCoefficient).map(a -> Arrays.stream(a).map(
         Double::valueOf).toArray(Double[]::new)).toArray(Double[][]::new);
-  }
-
-  private int findMaxAuthorName(AuthorSignatureCollection authorSignatureCollection) {
-    return authorSignatureCollection.signatures().stream()
-        .map(SignatureModel::getName).map(String::length).max(Integer::compareTo).get();
   }
 }

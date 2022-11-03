@@ -9,7 +9,16 @@ import com.company.view.InputFilePath;
 
 public class TextCollection {
 
-  public TextCollection() {
+  private static TextCollection instance;
+
+  private TextCollection() {
+  }
+
+  public static TextCollection getInstance(){
+    if (instance == null){
+      instance = new TextCollection();
+    }
+    return instance;
   }
 
   public ArrayList<TextModel> insertText(String path) {

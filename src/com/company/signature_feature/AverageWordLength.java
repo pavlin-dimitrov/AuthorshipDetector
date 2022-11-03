@@ -2,10 +2,18 @@ package com.company.signature_feature;
 
 public class AverageWordLength implements FeatureCalculator{
 
-  private StringStatistic stringStatistic;
+  private static AverageWordLength instance;
+  private final StringStatistic stringStatistic;
 
-  public AverageWordLength(StringStatistic stringStatistic) {
-    this.stringStatistic = stringStatistic;
+  private AverageWordLength() {
+    stringStatistic = StringStatistic.getInstance();
+  }
+
+  public static AverageWordLength getInstance(){
+    if (instance == null){
+      instance = new AverageWordLength();
+    }
+    return instance;
   }
 
   @Override
