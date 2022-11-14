@@ -5,6 +5,8 @@ import static java.lang.Math.round;
 import com.company.signature.AuthorSignatureCollection;
 import com.company.signature.SignatureModel;
 import com.company.signature.TextSignatureCollection;
+import com.company.text.TextCollection;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -17,7 +19,7 @@ public class DetectorResultParser {
   }
 
   public static DetectorResultParser getInstance() {
-    if (instance == null){
+    if (instance == null) {
       instance = new DetectorResultParser();
     }
     return instance;

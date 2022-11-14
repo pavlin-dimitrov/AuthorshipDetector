@@ -1,6 +1,5 @@
 package com.company.signature;
 
-import com.company.enumeration.RegexPattern;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -9,6 +8,8 @@ import java.util.Scanner;
 public class AuthorSignatureCollection {
 
   private static AuthorSignatureCollection instance;
+  private static final String AUTHOR_SIGNATURE_FEATURE_DELIMITER = "[,]|[\n]";
+  private static final String AUTHOR_SIGNATURE = "src/com/company/resources/knownSignatures.txt";
 
   private AuthorSignatureCollection() {
   }
@@ -21,8 +22,8 @@ public class AuthorSignatureCollection {
   }
 
   public ArrayList<SignatureModel> signatures() {
-    try (Scanner input = new Scanner(new File(RegexPattern.AUTHOR_SIGNATURE.getRegex()))) {
-      input.useDelimiter(RegexPattern.AUTHOR_SIGNATURE_FEATURE_DELIMITER.getRegex());
+    try (Scanner input = new Scanner(new File(AUTHOR_SIGNATURE))) {
+      input.useDelimiter(AUTHOR_SIGNATURE_FEATURE_DELIMITER);
       ArrayList<SignatureModel> authorSignatureModels = new ArrayList<>();
       while (input.hasNextLine()) {
         String name = input.next();
